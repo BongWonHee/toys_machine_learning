@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <title>RecurrenceOfSurgery - service</title>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1>RecurrenceOfSurgery - service</h1>
+
+        <!-- Form -->
+        <form id="predictionForm" class="mt-4">
+            <div class="row">
+                <div class="mb-3 ">
+                    <h4>성별을 선택하세요.</h4>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="gender_male" id="gender" value="1">
+                        <label class="form-check-label" for="gender_male">남성</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="gender_female" id="gender" value="2">
+                        <label class="form-check-label" for="gender_female">여성</label>
+                    </div>
+                </div>
+
+                <div class="mb-3 col-4">
+                    <label for="bloodpressure" class="form-label">혈압(mmHg)</label> 
+                    <input type="text" class="form-control" id="bloodpressure" name="blood_pressure" required> 
+                </div>
+
+                <div class="mb-3 col-4">
+                    <label for="surgerytechnic" class="form-label">수술기법 : </label>
+                    <input type="text" class="form-control" id="surgerytechnic" name="surgery_technic" required>
+                </div>
+
+                <div class="mb-3 col-4">
+                    <label for="frontdischigh" class="form-label">전방 디스크 높이 (mm) : </label>
+                    <input type="text" class="form-control" id="frontdischigh" name="front_dischigh" required>
+                </div>
+
+                <div class="mb-3 col-4">
+                    <label for="backdischigh" class="form-label">후방 디스크 높이 (mm) </label>
+                    <input type="text" class="form-control" id="backdischigh" name="back_dischigh" required> 
+                </div>
+
+                <div class="mb-3 col-4">
+                    <label for="modicchange" class="form-label">Modic change</label>
+                    <input type="text" class="form-control" id="modicchange" name="modic_change" required>
+                </div>
+
+                <div class="mb-3 col-4">
+                    <label for="discwide" class="form-label">디스크 단면적 (mm)</label>
+                    <input type="text" class="form-control" id="discwide" name="disc_wide" required>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary" id="predict">Predict</button>
+        </form>
+
+        <!-- Result Display -->
+        <div id="resultDisplay" class="mt-4"></div>
+        <!-- reference : https://github.com/yojulab/study_javascripts/blob/main/docs/browser_js/js/carinforwithrest.js -->
+        <!-- 여기에 결과값이 나와야함. 아래script에 적용시켜야함.  -->
+    </div>
+</body>
+<script>
+    // 이벤트를 건다. 
+    // id를 불러올때는 #, class를 불러올때는 ., tag를 불러올때는 그대로 사용
+    let predictObject = document.querySelector('#predict')
+    predictObject.addEventListener('click', (event) => {
+        event.preventDefault(); // submit 정지
+        // form tag안에 있는거 가져오는 기능
+        let gender = document.querySelector('#gender').value;
+        let bloodpressure = document.querySelector('#bloodpressure').value;
+        let surgerytechnic = document.querySelector('#surgerytechnic').value;
+        let frontdischigh = document.querySelector('#frontdischigh').value;
+        let backdischigh = document.querySelector('#backdischigh').value;
+        let modicchange = document.querySelector('#modicchange').value;
+        let discwide = document.querySelector('#discwide').value;
+
+
+        // request를 dictionary로 담아서 보낸다
+        let request_dict = { "gender": gender, "bloodpressure": bloodpressure, "surgerytechnic": surgerytechnic, "frontdischigh":frontdischigh
+                            ,"backdischigh": backdischigh, "modicchange": modicchange, "discwide": discwide}
+
+        // console.log(`request_dict : ${request_dict}`);
+        // backend에 request던지고 return dictionary 
+        // fetch_
+        fetch('http://127.0.0.1:8000/expectation/surgeytime', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(request_dict)
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                // Display the result in the resultDisplay div
+                document.querySelector('#resultDisplay').innerHTML = `예상 수술 시간은 : ${data.surgeytime}` // 목표변수를 여기에 써준다. 
+            })
+            .catch(error => console.error(error));
+
+    });
+</script>
+
+</html>
