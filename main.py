@@ -39,7 +39,7 @@ def mlmodelwithregression(data:dict) : # json
         loaded_model = pickle.load(regression_file)
         input_labels = [[gender,bloodpressure,surgerytechnic,frontdischigh,backdischigh,modicchange,discwide]] # 학습했던 설명변수 형식 맞게 적용
         result_predict = loaded_model.predict(input_labels)
-        print('Predict radius_mean Result : {}'.format(result_predict))
+        print('Predict surgeytime Result : {}'.format(result_predict))
         pass
 
     # 예측값 리턴

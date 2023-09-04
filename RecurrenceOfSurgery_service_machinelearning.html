@@ -17,36 +17,36 @@
         <form id="predictionForm" class="mt-4">
             <div class="row">
                 <div class="mb-3 col-4 ">
-                    <h4>성별을 선택하세요.</h4>
+                    <h5>성별을 선택하세요.</h5>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="gender_male" id="gender" value="1">
-                        <label class="form-check-label" for="gender_male">남성</label>
+                        <label class="form-check-label" for="gender">남성</label>
                     </div>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="gender_female" id="gender" value="2">
-                        <label class="form-check-label" for="gender_female">여성</label>
+                        <label class="form-check-label" for="gender">여성</label>
                     </div>
                 </div>
                 <div class="mb-3 col-4">
                     <h5>고혈압여부</h5>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="bloodpressure" id="bloodpressure" value="0">
-                        <label class="form-check-label" for="gender_male">없음</label>
+                        <input class="form-check-input" type="radio" name="blood_pressure" id="bloodpressure" value="0">
+                        <label class="form-check-label" for="bloodpressure">없음</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="bloodpressure" id="bloodpressure" value="1">
-                        <label class="form-check-label" for="gender_female">있음</label>
+                        <input class="form-check-input" type="radio" name="blood_pressure" id="bloodpressure" value="1">
+                        <label class="form-check-label" for="bloodpressure">있음</label>
                     </div>
                 </div>
 
                 <div class="mb-3 col-4">
                     <h5>수술기법</h5>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="surgerytechnic" id="surgery_technic" value="1">
+                        <input class="form-check-input" type="radio" name="surgery_technic" id="surgerytechnic" value="1">
                         <label class="form-check-label" for="surgerytechnic">TELD</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="surgerytechnic" id="surgery_technic" value="0">
+                        <input class="form-check-input" type="radio" name="surgery_technic" id="surgerytechnic" value="0">
                         <label class="form-check-label" for="surgerytechnic">IELD</label>
                     </div>
                 </div>
@@ -71,7 +71,7 @@
                     <input type="text" class="form-control" id="discwide" name="disc_wide" required>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary" id="surgeytime">수술시간 확인</button>
+            <button type="submit" class="btn btn-primary" id="surgeytime">result</button>
         </form>
 
         <!-- Result Display -->
