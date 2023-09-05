@@ -35,7 +35,7 @@ def mlmodelwithregression(data:dict) : # json
 
     result_predict = 0;
     # 학습 모델 불러와 예측
-    with open('datasets/test01.pkl', 'rb') as regression_file:
+    with open('datasets/test02.pkl', 'rb') as regression_file:
         loaded_model = pickle.load(regression_file)
         input_labels = [[gender,bloodpressure,surgerytechnic,frontdischigh,backdischigh,modicchange,discwide]] # 학습했던 설명변수 형식 맞게 적용
         result_predict = loaded_model.predict(input_labels)
